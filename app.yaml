@@ -1,0 +1,28 @@
+
+application: federationsandbox
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+  - url: /
+    static_files: home.html
+    upload: home.html
+    mime_type: text/html
+    secure: never
+
+  - url: /.well-known/federation
+    static_files: discovery.json
+    upload: discovery.json
+    mime_type: application/json
+    expiration: 1d
+    secure: always
+
+  - url: /associate
+    script: associate.py
+    secure: always
+
+  - url: /admin/.*
+    script: $PYTHON_LIB/google/appengine/ext/admin
+    login: admin
+
