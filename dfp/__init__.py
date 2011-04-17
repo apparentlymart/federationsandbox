@@ -97,7 +97,7 @@ class DFPHelper(object):
             "verifier": verifier
         }
         payload = urllib.urlencode(fields)
-        log.error("Issuing verify request for %r to %r", domain, endpoint)
+        log.debug("Issuing verify request for %r to %r", domain, endpoint)
         try:
             response = urllib2.urlopen(endpoint, payload)
         except urllib2.URLError, ex:
