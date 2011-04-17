@@ -1,0 +1,3 @@
+sandbox/local_settings.py
+*.pyc
+index.yaml
