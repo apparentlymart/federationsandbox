@@ -93,7 +93,7 @@ class DFPHelper(object):
 
         fields = {
             "mode": "verify",
-            "domain": domain,
+            "domain": self.local_domain,
             "verifier": verifier
         }
         payload = urllib.urlencode(fields)
