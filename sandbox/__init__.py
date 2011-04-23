@@ -34,3 +34,10 @@ def template_response(fn, vars):
 def remote_user():
     return users.get_current_user()
 
+def redirect(url):
+    print "Status: 302 Found"
+    print "Location: %s" % url
+    print "Content-Type: text/html"
+    print ""
+    print "redirect"
+

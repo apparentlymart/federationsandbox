@@ -24,3 +24,4 @@ else:
         entity = sandbox.Entity(name=name)
         entity.put()
 
+    sandbox.redirect("/mine")
