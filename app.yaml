@@ -26,3 +26,14 @@ handlers:
     script: $PYTHON_LIB/google/appengine/ext/admin
     login: admin
 
+  - url: /_ah/login_required
+    script: login.py
+
+  - url: /mine
+    script: user_home.py
+    login: required
+
+  - url: /entities/[a-f0-9\-]+
+    script: entity_home.py
+    login: required
+

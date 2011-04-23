@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>{% block htmltitle %}Domain Federation Sandbox{% endblock %}</title>
+</head>
+
+<body>
+
+<div id="top">
+<h1>Domain Federation Sandbox</h1>
+<div id="whois">
+{% if remote_user %}
+Logged in as <strong>{{ remote_user.nickname }}</strong> (<a href="{{ logout_url }}">Log out</a>)
+{% else %}
+Not logged in (<a href="{{ login_url }}">Log in</a>)
+{% endif %}
+</div>
+<h2>{% block title %}{% endblock %}</h2>
+</div>
+
+<div id="main">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
+
