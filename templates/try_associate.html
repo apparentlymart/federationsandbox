@@ -1,0 +1,21 @@
+{% extends "page.html" %}
+
+{% block htmltitle %}Try an Association Request{% endblock %}
+
+{% block title %}Try an Association Request{% endblock %}
+
+{% block content %}
+
+<p>This page allows you to attempt an association with
+another domain. This is intended to be used to test new
+DFP implementations.</p>
+
+<p>The association request will come from <strong>{{ settings.LOCAL_DOMAIN }}</strong>.</p>
+
+<form method="POST">
+<p>Target Domain: <input type="text" name="domain" /></p>
+<p><input type="submit" value="Try to Associate" /></p>
+</form>
+
+{% endblock %}
+

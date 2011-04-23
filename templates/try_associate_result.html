@@ -1,0 +1,22 @@
+{% extends "page.html" %}
+
+{% block htmltitle %}Association Request results for {{ target_domain }}{% endblock %}
+
+{% block title %}Association Request results for {{ target_domain }}{% endblock %}
+
+{% block content %}
+
+{% if successful %}
+<p>Association with <strong>{{ target_domain }}</strong> was successful.</p>
+{% else %}
+<p>Association with <strong>{{ target_domain }}</strong> was unsuccessful.</p>
+{% endif %}
+
+<ul>
+{% for line in logs %}
+<li>{{ line }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
