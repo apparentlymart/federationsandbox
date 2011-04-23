@@ -1,0 +1,36 @@
+{% extends "page.html" %}
+
+{% block htmltitle %}Your Entities{% endblock %}
+
+{% block title %}Your Entities{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+<input type="hidden" name="mode" value="create_entity">
+<p><input type="submit" value="Create a new Entity" /></p>
+</form>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Created</th>
+<th>Last Send</th>
+<th>Last Receive</th>
+</tr>
+</thead>
+<tbody>
+{% for entity in entities_owned %}
+    <tr>
+    <td><a href="/entities/{{ entity.name }}">{{ entity.name }}</a></td>
+    <td>{{ entity.create_time }}</td>
+    <td>{{ entity.latest_send_time }}</td>
+    <td>{{ entity.latest_recv_time }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+
