@@ -3,6 +3,8 @@ application: federationsandbox
 version: 1
 runtime: python
 api_version: 1
+builtins:
+  - deferred: on
 
 handlers:
   - url: /
@@ -22,6 +24,10 @@ handlers:
     script: associate.py
     secure: always
 
+  - url: /subscribe
+    script: subscribe.py
+    secure: always
+
   - url: /admin/.*
     script: $PYTHON_LIB/google/appengine/ext/admin
     login: admin
@@ -39,5 +45,6 @@ handlers:
 
   - url: /entities/[a-f0-9\-]+
     script: entity_home.py
-    login: required
+
+
 

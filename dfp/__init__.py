@@ -23,6 +23,12 @@ except ImportError:
 class DiscoveryError(Exception):
     pass
 
+class AuthHeaderParseError(Exception):
+    pass
+
+class InvalidAssociationError(Exception):
+    pass
+
 class DFPHelper(object):
 
     def __init__(self, local_domain=None, override_domains=None, assoc_secret=None):
@@ -131,6 +137,20 @@ class DFPHelper(object):
             "token": token,
             "expires_in": 3600,
         }
+
+    def identity_from_authorization_header(self, header):
+        match = re.match("^DFPEntity\s+(\S+)\s+(\S+)\s+$")
+        if match:
+            entity = match.group(1)
+            token = match.group(2)
+
+            domain = domain_for_token("a", token)
+            if domain is not None:
+                return (entity, domain)
+            else:
+                raise InvalidAssociationError()
+        else:
+            raise AuthHeaderParseError()
 
     def make_token(self, type, domain, ts=None):
         if ts is None:
