@@ -83,6 +83,7 @@ class DFPHelper(object):
             "verifier": verifier
         }
         payload = urllib.urlencode(fields)
+        log.debug("Sending association request to %r from %r", domain, self.local_domain)
         response = urllib2.urlopen(endpoint, payload)
 
         data = json.load(response)
@@ -97,7 +98,7 @@ class DFPHelper(object):
             "verifier": verifier
         }
         payload = urllib.urlencode(fields)
-        log.debug("Issuing verify request for %r to %r", domain, endpoint)
+        log.debug("Issuing verify request from %r to %r via %r", domain, self.local_domain, endpoint)
         try:
             response = urllib2.urlopen(endpoint, payload)
         except urllib2.URLError, ex:
