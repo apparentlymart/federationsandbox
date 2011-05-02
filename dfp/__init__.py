@@ -139,12 +139,12 @@ class DFPHelper(object):
         }
 
     def identity_from_authorization_header(self, header):
-        match = re.match("^DFPEntity\s+(\S+)\s+(\S+)\s+$")
+        match = re.match("^DFPEntity\s+(\S+)\s+(\S+)\s*$", header)
         if match:
             entity = match.group(1)
             token = match.group(2)
 
-            domain = domain_for_token("a", token)
+            domain = self.domain_for_token("a", token)
             if domain is not None:
                 return (entity, domain)
             else:
