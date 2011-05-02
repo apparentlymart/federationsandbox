@@ -98,6 +98,10 @@ class DFPHelper(object):
     def verify_incoming_association_request(self, domain, verifier):
         endpoint = self.associate_endpoint_for_domain(domain)
 
+        if domain in self.override_domains:
+            log.debug("Just trusting assoc request from %r because it's overridden", domain)
+            return True
+
         fields = {
             "mode": "verify",
             "domain": self.local_domain,
