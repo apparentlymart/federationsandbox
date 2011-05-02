@@ -1,5 +1,5 @@
 
-from dfp import DFPHelper
+from dfp import DFPHelper, json
 from sandbox import settings
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
@@ -40,4 +40,9 @@ def redirect(url):
     print "Content-Type: text/html"
     print ""
     print "redirect"
+
+def json_response(dict):
+    print "Content-Type: application/json"
+    print ""
+    print json.dumps(dict)
 

@@ -1,0 +1,31 @@
+{% extends "page.html" %}
+
+{% block htmltitle %}Entity {{ entity.name }}{% endblock %}
+
+{% block title %}Entity {{ entity.name }}{% endblock %}
+
+{% block content %}
+
+{% if owned %}
+<h3>Publish a Message</h3>
+
+<h3>Subscribe to another Entity</h3>
+<form method="POST">
+<p>Entity ID: <input type="text" name="entity" size="10">@<input type="text" name="domain" size="10">
+<input type="submit" value="Subscribe">
+<input type="hidden" name="mode" value="subscribe"></p>
+</form>
+{% endif %}
+
+<h3>Latest Subscriptions</h3>
+
+<ul>
+{% for subscription in subscriptions %}
+<li>{{subscription.remote_entity_name}} from {{subscription.remote_entity_domain}}</li>
+{% endfor %}
+</ul>
+
+<h3>Latest Messages Received</h3>
+
+{% endblock %}
+

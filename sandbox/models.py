@@ -13,6 +13,11 @@ class Entity(db.Model):
     def get_by_user(cls, user):
         return db.GqlQuery("SELECT * FROM Entity WHERE user=:1 ORDER BY create_time", user)
 
+    @classmethod
+    def get_by_name(cls, name):
+        entities = db.GqlQuery("SELECT * FROM Entity where name=:1", name)
+        return entities.get()
+
 
 class SubscriptionFromRemoteEntity(db.Model):
     local_entity = db.ReferenceProperty(reference_class=Entity,
@@ -20,6 +25,7 @@ class SubscriptionFromRemoteEntity(db.Model):
                                         collection_name="subscriptions_from_remote_entities")
     remote_entity_name = db.StringProperty(required=True)
     remote_entity_domain = db.StringProperty(required=True)
+    create_time = db.DateTimeProperty(auto_now_add=True)
 
 
 class SocialMessageReceived(db.Model):
@@ -30,4 +36,4 @@ class SocialMessageReceived(db.Model):
     remote_entity_domain = db.StringProperty(required=True)
     type = db.StringProperty(required=True)
     payload = db.TextProperty()
-
+    receive_time = db.DateTimeProperty(auto_now_add=True)
